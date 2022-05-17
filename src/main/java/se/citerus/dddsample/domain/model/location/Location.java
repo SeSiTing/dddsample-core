@@ -8,7 +8,7 @@ import se.citerus.dddsample.domain.shared.Entity;
  * origin or destination, or carrier movement endpoints.
  *
  * It is uniquely identified by a UN Locode.
- *
+ * 位置是我们的模型，是旅途中的停靠点，例如货物 * 始发地或目的地，或承运人移动端点。 * * 它由联合国 Locode 唯一标识
  */
 public final class Location implements Entity<Location> {
 

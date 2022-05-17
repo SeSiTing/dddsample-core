@@ -12,7 +12,7 @@ import se.citerus.dddsample.domain.shared.ValueObject;
  * A handling activity represents how and where a cargo can be handled,
  * and can be used to express predictions about what is expected to
  * happen to a cargo in the future.
- *
+ * 装卸活动代表货物的装卸方式和地点， * 并且可用于表达对预期结果的预测 * 将来发生在货物上。
  */
 public class HandlingActivity implements ValueObject<HandlingActivity> {
 

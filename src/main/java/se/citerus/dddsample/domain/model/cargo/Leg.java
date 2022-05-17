@@ -11,13 +11,18 @@ import java.util.Date;
 
 /**
  * An itinerary consists of one or more legs.
+ * 行程的uoge部分
  */
 public class Leg implements ValueObject<Leg> {
-
+  // 航程
   private Voyage voyage;
+  // 地址
   private Location loadLocation;
+  // 卸货位置
   private Location unloadLocation;
+  // 装货时间
   private Date loadTime;
+  // 卸货时间
   private Date unloadTime;
 
   public Leg(Voyage voyage, Location loadLocation, Location unloadLocation, Date loadTime, Date unloadTime) {

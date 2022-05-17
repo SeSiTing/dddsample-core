@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Route specification. Describes where a cargo origin and destination is,
  * and the arrival deadline.
- * 
+ * 路线规范。描述货物起运地和目的地的位置， * 和到达截止日期。
  */
 public class RouteSpecification extends AbstractSpecification<Itinerary> implements ValueObject<RouteSpecification> {
 

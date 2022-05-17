@@ -4,6 +4,7 @@ import se.citerus.dddsample.domain.shared.ValueObject;
 
 /**
  * Routing status. 
+ * 路由状态
  */
 public enum RoutingStatus implements ValueObject<RoutingStatus> {
   NOT_ROUTED, ROUTED, MISROUTED;

@@ -18,19 +18,28 @@ import java.util.Iterator;
 /**
  * The actual transportation of the cargo, as opposed to
  * the customer requirement (RouteSpecification) and the plan (Itinerary). 
+ * 货物的实际运输，而不是客户的要求（路线规范）和计划（行程）
  *
  */
 public class Delivery implements ValueObject<Delivery> {
-
+  // 运输状态
   private TransportStatus transportStatus;
+  // 最近到达的地址
   private Location lastKnownLocation;
+  // 当前行程
   private Voyage currentVoyage;
+  // 是否错误
   private boolean misdirected;
   private Date eta;
+  // 下一个预期活动
   private HandlingActivity nextExpectedActivity;
+  // 是否卸货
   private boolean isUnloadedAtDestination;
+  // 路由状态
   private RoutingStatus routingStatus;
+  // 计算时间
   private Date calculatedAt;
+  // 最后一个事件
   private HandlingEvent lastEvent;
 
   private static final Date ETA_UNKOWN = null;
@@ -40,7 +49,7 @@ public class Delivery implements ValueObject<Delivery> {
    * Creates a new delivery snapshot to reflect changes in routing, i.e.
    * when the route specification or the itinerary has changed
    * but no additional handling of the cargo has been performed.
-   *
+   * 创建一个新的交付快照以反映路由的变化，即 * 当路线规格或行程发生变化时 * 但未对货物进行额外处理。
    * @param routeSpecification route specification
    * @param itinerary itinerary
    * @return An up to date delivery
@@ -54,7 +63,7 @@ public class Delivery implements ValueObject<Delivery> {
   /**
    * Creates a new delivery snapshot based on the complete handling history of a cargo,
    * as well as its route specification and itinerary.
-   *
+   * 根据货物的完整处理历史创建新的交货快照， * 以及它的路线规格和行程。
    * @param routeSpecification route specification
    * @param itinerary itinerary
    * @param handlingHistory delivery history
@@ -71,7 +80,7 @@ public class Delivery implements ValueObject<Delivery> {
 
   /**
    * Internal constructor.
-   *
+   * 初始化部署数据，根据最后的事件，行程和路线规范，
    * @param lastEvent last event
    * @param itinerary itinerary
    * @param routeSpecification route specification

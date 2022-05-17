@@ -56,13 +56,19 @@ public class Cargo implements Entity<Cargo> {
   // 交货
   private Delivery delivery;
 
+  /**
+   * 初始化货物聚合，唯一id+入参对象
+   */
   public Cargo(final TrackingId trackingId, final RouteSpecification routeSpecification) {
+    // 在各个方法前添加前置校验
     Validate.notNull(trackingId, "Tracking ID is required");
     Validate.notNull(routeSpecification, "Route specification is required");
 
     this.trackingId = trackingId;
     // Cargo origin never changes, even if the route specification changes.
+    // 即使路线规格发生变化，货物来源也不会改变
     // However, at creation, cargo orgin can be derived from the initial route specification.
+    // 但是，在创建时，可以从初始路线规范派生货物来源
     this.origin = routeSpecification.origin();
     this.routeSpecification = routeSpecification;
 
@@ -110,7 +116,8 @@ public class Cargo implements Entity<Cargo> {
   
   /**
    * Specifies a new route for this cargo.
-   *
+   * 给此货物指定一个新路线
+   * todo 由此可见在聚合根中，是其他实体也可以进行修改，也可以调用其他实体的内部方法
    * @param routeSpecification route specification.
    */
   public void specifyNewRoute(final RouteSpecification routeSpecification) {
@@ -118,12 +125,13 @@ public class Cargo implements Entity<Cargo> {
 
     this.routeSpecification = routeSpecification;
     // Handling consistency within the Cargo aggregate synchronously
+    // 同步处理 Cargo 聚合中的一致性
     this.delivery = delivery.updateOnRouting(this.routeSpecification, this.itinerary);
   }
 
   /**
    * Attach a new itinerary to this cargo.
-   *
+   *给此货物指定一个新的行程
    * @param itinerary an itinerary. May not be null.
    */
   public void assignToRoute(final Itinerary itinerary) {
@@ -131,6 +139,7 @@ public class Cargo implements Entity<Cargo> {
 
     this.itinerary = itinerary;
     // Handling consistency within the Cargo aggregate synchronously
+    // 同步处理 Cargo 聚合中的一致性
     this.delivery = delivery.updateOnRouting(this.routeSpecification, this.itinerary);
   }
 
@@ -154,9 +163,13 @@ public class Cargo implements Entity<Cargo> {
 
     // Delivery is a value object, so we can simply discard the old one
     // and replace it with a new
+    // 由于Delivery是一个值对象，所以我们可以直接丢弃，然会创建一个新的
     this.delivery = Delivery.derivedFrom(routeSpecification(), itinerary(), handlingHistory);
   }
 
+  /**
+   * 判断id是否相同
+   */
   @Override
   public boolean sameIdentityAs(final Cargo other) {
     return other != null && trackingId.sameValueAs(other.trackingId);

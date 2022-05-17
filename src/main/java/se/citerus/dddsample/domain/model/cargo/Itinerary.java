@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * An itinerary.
- *
+ * 行程
  */
 public class Itinerary implements ValueObject<Itinerary> {
 
