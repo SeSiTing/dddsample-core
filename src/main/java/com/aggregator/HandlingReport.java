@@ -42,7 +42,7 @@ import java.util.List;
     "voyageNumber"
 })
 public class HandlingReport {
-
+    
     @XmlElement(required = true)
     protected XMLGregorianCalendar completionTime;
     @XmlElement(required = true)

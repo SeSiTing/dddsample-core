@@ -43,12 +43,17 @@ import se.citerus.dddsample.domain.shared.Entity;
  * in port etc), are captured in this aggregate.
  *
  */
+ // 货物聚合
 public class Cargo implements Entity<Cargo> {
-
+  // 跟踪号码
   private TrackingId trackingId;
+  // 地址
   private Location origin;
+  // 路线
   private RouteSpecification routeSpecification;
+  // 行程
   private Itinerary itinerary;
+  // 交货
   private Delivery delivery;
 
   public Cargo(final TrackingId trackingId, final RouteSpecification routeSpecification) {
